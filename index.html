@@ -1,3 +1,4 @@
+<html>
     <head>
         <title>EchoAPI</title>
         <script type="text/javascript">
@@ -12,7 +13,7 @@
                         callback(xobj.responseText);
                     }
                 }
-                xobj.send(null);
+                xobj.send(xobj.responseText);
 
             }
 
@@ -105,3 +106,4 @@
     <body onload="PutData()">
         <pre id="Data"></pre>
     </body>
+</html>
