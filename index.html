@@ -7,28 +7,80 @@
             var url = new URL(url_string);
             var Language = url.searchParams.get("lang");
             var Response = url.searchParams.get("key");
+            var ReturningData = {
+                "Data": null,
+                "Error": {
+                    "Code": 0,
+                    "Message": ""
+                },
+                "LanguageIsProvided": false,
+                "KeyIsProvided": false
+            }
             function PutData() {
                 if (Response === null && Language === null) {
-                    document.getElementById("Data").innerHTML = Data.EN;
+                    ReturningData.Data = JSON.stringify(Data.EN);
+                    ReturningData.Error = {
+                        "Code": 1,
+                        "Message": "No language or key provided, returning English responses."
+                    };
                 } else if (Response === null) {
                     if (Data.hasOwnProperty(Language)) {
-                        document.getElementById("Data").innerHTML = Data[Language];
+                        ReturningData.Data = JSON.stringify(Data[Language]);
+                        ReturningData.LanguageIsProvided = true;
                     } else {
-                        document.getElementById("Data").innerHTML = Data.EN;
+                        ReturningData.Data = JSON.stringify(Data.EN);
+                        ReturningData.Error = {
+                            "Code": 2,
+                            "Message": "Language not found, returning English instead."
+                        };
+                        ReturningData.LanguageIsProvided = true;
                     }
                 } else {
+                
                     if (Data.hasOwnProperty(Language)) {
+                    
                         if (Data[Language].hasOwnProperty(Response)) {
-                            document.getElementById("Data").innerHTML = Data[Language][Response];
+                        
+                            ReturningData.Data = Data[Language][Response];
+                            ReturningData.LanguageIsProvided = true;
+                            ReturningData.KeyIsProvided = true;
+                            
                         } else {
-                            document.getElementById("Data").innerHTML = "Error 1: Key not found.";
+                        
+                            ReturningData.Data = "This message appeared because the language API has been called wrongly. Please inform Proxy#0814 or JurrijnP#1676";
+                            ReturningData.Error = {
+                                "Code": 3,
+                                "Message": "Language found. Key not found, returning error message."
+                            };
+                            ReturningData.LanguageIsProvided = true;
+                            ReturningData.KeyIsProvided = true;
+                            
                         }
+                        
                     } else if (Data["EN"].hasOwnProperty(Response)) {
-                        document.getElementById("Data").innerHTML = Data.EN[Response];
+                    
+                        ReturningData.Data = Data.EN[Response];
+                        ReturningData.Error = {
+                            "Code": 4,
+                            "Message": "Key found. Language not found, returning English key instead."
+                        };
+                        ReturningData.LanguageIsProvided = true;
+                        ReturningData.KeyIsProvided = true;
+                        
                     } else {
-                        document.getElementById("Data").innerHTML = "Error 3: Language & Key not found.";
+                    
+                        ReturningData.Data = "This message appeared because the language API has been called wrongly. Please inform Proxy#0814 or JurrijnP#1676";
+                        ReturningData.Error = {
+                            "Code": 5,
+                            "Message": "Language not found. Key not found, returning error message."
+                        };
+                        ReturningData.LanguageIsProvided = true;
+                        ReturningData.KeyIsProvided = true;
+                        
                     }
+                    
                 }
+                document.getElementById("Data").innerHTML = JSON.stringify(ReturningData);
             }
         </script>
     </head>
