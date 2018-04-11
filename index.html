@@ -2,8 +2,11 @@
     <head>
         <title>EchoAPI</title>
         <script type="text/javascript">
+            var url_string = window.location.href; //window.location.href
+            var url = new URL(url_string);
+            var c = url.searchParams.get("c");
             function Change() {
-		        document.getElementById("Hi").innerHTML = "Hello";
+		        document.getElementById("Hi").innerHTML = c;
             }
         </script>
     </head>
