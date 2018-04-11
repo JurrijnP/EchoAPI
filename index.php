@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>EchoAPI</title>
-        <script>
+        <script type="text/javascript">
             document.getElementById("Hi").innerHTML = "Hello";
         </script>
     </head>
