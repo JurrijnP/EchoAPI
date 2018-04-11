@@ -35,6 +35,7 @@
                 "KeyIsProvided": false
             }
             function PutData() {
+                window.document.contentType = "application/json";
                 if (Response === null && Language === null) {
                     ReturningData.Data = "This message appeared because the language API has been called wrongly. Please inform Proxy#0814 or JurrijnP#1676";
                     ReturningData.Error = {
