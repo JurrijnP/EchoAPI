@@ -18,10 +18,10 @@
             }
             function PutData() {
                 if (Response === null && Language === null) {
-                    ReturningData.Data = JSON.stringify(Data.EN);
+                    ReturningData.Data = "This message appeared because the language API has been called wrongly. Please inform Proxy#0814 or JurrijnP#1676";
                     ReturningData.Error = {
                         "Code": 1,
-                        "Message": "No language or key provided, returning English responses."
+                        "Message": "No language or key provided, returning error message."
                     };
                 } else if (Response === null) {
                     if (Data.hasOwnProperty(Language)) {
