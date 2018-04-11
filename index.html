@@ -1,19 +1,39 @@
 <html>
     <head>
         <title>EchoAPI</title>
+        <script type="text/javascript" src="Responses.json"></script>
         <script type="text/javascript">
             var url_string = window.location.href; //window.location.href
             var url = new URL(url_string);
             var Language = url.searchParams.get("lang");
-	    var Response = url.searchParams.get("key");
-            function Change() {
-		        document.getElementById("Hi").innerHTML = Language + "\n" + Response;
+            var Response = url.searchParams.get("key");
+            function PutData() {
+                if (Response === null && Language === null) {
+                    document.getElementById("Data").innerHTML = Data.EN;
+                } else if (Response === null) {
+                    if (Data.hasOwnProperty(Language)) {
+                        document.getElementById("Data").innerHTML = Data[Language];
+                    } else {
+                        document.getElementById("Data").innerHTML = Data.EN;
+                    }
+                } else {
+                    if (Data.hasOwnProperty(Language)) {
+                        if (Data[Language].hasOwnProperty(Response)) {
+                            document.getElementById("Data").innerHTML = Data[Language][Response];
+                        } else {
+                            document.getElementById("Data").innerHTML = "Error 1: Key not found.";
+                        }
+                    } else if (Data["EN"].hasOwnProperty(Response)) {
+                        document.getElementById("Data").innerHTML = Data.EN[Response];
+                    } else {
+                        document.getElementById("Data").innerHTML = "Error 3: Language & Key not found.";
+                    }
+                }
             }
         </script>
     </head>
     
-    <body>
-        <span id="Hi">Hallo</span>
-	    <button onclick="Change();">Click!</button>
+    <body onload="PutData()">
+        <span id="Data"></span>
     </body>
 </html>
