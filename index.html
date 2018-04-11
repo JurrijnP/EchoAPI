@@ -6,7 +6,7 @@
             function loadJSON(callback) {
                 var xobj = new XMLHttpRequest();
                 xobj.overrideMimeType("application/json");
-                xobj.open('GET', 'file.json', true);
+                xobj.open('GET', 'https://jurrijnp.github.io/EchoAPI/Responses.json', true);
                 xobj.onreadystatechange = function () {
                     if (xobj.readyState == 4 && xobj.status == "200") {
                         // .open will NOT return a value but simply returns undefined in async mode so use a callback
@@ -21,7 +21,6 @@
             loadJSON(function(response) {
                 Data = JSON.parse(response);
             });
-            loadJSON("https://jurrijnp.github.io/EchoAPI/Responses.json");
             var url_string = window.location.href; //window.location.href
             var url = new URL(url_string);
             var Language = url.searchParams.get("lang");
@@ -105,6 +104,6 @@
     </head>
     
     <body onload="PutData()">
-        <span id="Data"></span>
+        <pre id="Data"></pre>
     </body>
 </html>
