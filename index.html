@@ -43,10 +43,10 @@
                     };
                 } else if (Response === null) {
                     if (Data.hasOwnProperty(Language)) {
-                        ReturningData.Data = JSON.stringify(Data[Language]);
+                        ReturningData.Data = Data[Language];
                         ReturningData.LanguageIsProvided = true;
                     } else {
-                        ReturningData.Data = JSON.stringify(Data.EN);
+                        ReturningData.Data = Data.EN;
                         ReturningData.Error = {
                             "Code": 2,
                             "Message": "Language not found, returning English instead."
