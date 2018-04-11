@@ -1,4 +1,4 @@
-Data = {
+{
     "EN": {
         "ROLE_EXIST_ERROR": "I couldn't find the role `{data}`. Check your spelling.",
         "CHANNEL_EXIST_ERROR": "This channel doesn't exist in this server.",
