@@ -4,15 +4,16 @@
         <script type="text/javascript">
             var url_string = window.location.href; //window.location.href
             var url = new URL(url_string);
-            var c = url.searchParams.get("c");
+            var Language = url.searchParams.get("lang");
+	    var Response = url.searchParams.get("key");
             function Change() {
-		        document.getElementById("Hi").innerHTML = c;
+		        document.getElementById("Hi").innerHTML = Language + "\n" + Response;
             }
         </script>
     </head>
     
     <body>
         <span id="Hi">Hallo</span>
-	<button value="Click!" onclick="Change();" />
+	    <button onclick="Change();">Click!</button>
     </body>
 </html>
