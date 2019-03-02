@@ -15,11 +15,23 @@ type TranslationChange struct {
 }
 
 type Translation struct {
-	prefix string
+    prefix   string
+    markdown TranslationMDData
 
 	Language        string
 	UseCustom       bool
 	CustomResponses Custom
+}
+
+type TranslationMDData struct {
+    Start string
+    End   string
+}
+
+type Pages struct {
+	Pages []string
+
+	length int
 }
 
 type Custom struct {
@@ -93,6 +105,7 @@ type CategoryAttachments struct {
 type CategoryGeneral struct {
 	General struct {
 		Contact                           string `json:"Contact"`
+		Contact_DM                        string `json:"Contact_DM"`
 		Lock_Question                     string `json:"Lock_Question"`
 		Lock_Confirmation                 string `json:"Lock_Confirmation"`
 		Unlock                            string `json:"Unlock"`
@@ -200,16 +213,23 @@ type CategoryCommandsDiscord struct {
 		Ban_Remove                    string `json:"Ban_Remove"`
 		Ban_Add_Error                 string `json:"Ban_Add_Error"`
 		Ban_Remove_Error              string `json:"Ban_Remove_Error"`
+		SafeRole_Error                string `json:"SafeRole_Error"`
+		SafeRole_Enable               string `json:"SafeRole_Enable"`
+		SafeRole_Disable              string `json:"SafeRole_Disable"`
 		Role_Give                     string `json:"Role_Give"`
+		Role_Give_SafeRole_Position   string `json:"Role_Give_SafeRole_Position"`
+		Role_Give_SafeRole_Manage     string `json:"Role_Give_SafeRole_Manage"`
 		Role_Give_Error_Syntax        string `json:"Role_Give_Error_Syntax"`
-		Role_Give_Error_Position      string `json:"Role_Give_Error_Position"`
 		Role_Give_Error_Echo_Position string `json:"Role_Give_Error_Echo_Position"`
-		Role_Give_Error_Role          string `json:"Role_Give_Error_Role"`
+		Role_Give_Error               string `json:"Role_Give_Error"`
 		Role_Take                     string `json:"Role_Take"`
+		Role_Take_SafeRole_Position   string `json:"Role_Take_SafeRole_Position"`
+		Role_Take_SafeRole_Manage     string `json:"Role_Take_SafeRole_Manage"`
 		Role_Take_Error_Syntax        string `json:"Role_Take_Error_Syntax"`
-		Role_Take_Error_Role          string `json:"Role_Take_Error_Role"`
+		Role_Take_Error_Echo_Position string `json:"Role_Take_Error_Echo_Position"`
+		Role_Take_Error               string `json:"Role_Take_Error"`
 		Clear_Error_Syntax            string `json:"Clear_Error_Syntax"`
-		Clear_Error_Limit             string `json:"Clear_Error_Limit"`
+		Clear_Error_Amount            string `json:"Clear_Error_Amount"`
 	} `json:"Commands_Discord"`
 }
 
@@ -218,22 +238,26 @@ type CategoryCommandsEcho struct {
 		ErrorReport_Enable         string `json:"ErrorReport_Enable"`
 		ErrorReport_Disable        string `json:"ErrorReport_Disable"`
 		ErrorReport_Channel_Change string `json:"ErrorReport_Channel_Change"`
+		ErrorReport_Error          string `json:"ErrorReport_Error"`
 		AutoRole_Enable            string `json:"AutoRole_Enable"`
 		AutoRole_Disable           string `json:"AutoRole_Disable"`
 		AutoRole_Role_Change       string `json:"AutoRole_Role_Change"`
 		AutoRole_Channel_Change    string `json:"AutoRole_Channel_Change"`
+		AutoRole_Event             string `json:"AutoRole_Event"`
 		AutoNick_Enable            string `json:"AutoNick_Enable"`
 		AutoNick_Disable           string `json:"AutoNick_Disable"`
 		AutoNick_Change            string `json:"AutoNick_Change"`
 		AutoNick_Error_Syntax      string `json:"AutoNick_Error_Syntax"`
 		Nickname                   string `json:"Nickname"`
-		Nickname_Error_Mention     string `json:"Nickname_Error_Mention"`
-		Nick_Error                 string `json:"Nick_Error"`
+		Nickname_Error_Syntax      string `json:"Nickname_Error_Syntax"`
+		Nickname_Error             string `json:"Nickname_Error"`
 	} `json:"Commands_Echo"`
 }
 
 type CategoryCommandsMisc struct {
 	CommandsMisc struct {
+		Command_ID          string   `json:"Command_ID"`
+		Command_ID_Error    string   `json:"Command_ID_Error"`
 		LocateIP            string   `json:"LocateIP"`
 		LocateIP_Error      string   `json:"LocateIP_Error"`
 		Track_Invites       string   `json:"Track_Invites"`
@@ -241,6 +265,29 @@ type CategoryCommandsMisc struct {
 		EightBall           []string `json:"EightBall"`
 		Ask_For_Prefix      string   `json:"Ask_For_Prefix"`
 	} `json:"Commands_Misc"`
+}
+
+type CategoryProfiles struct {
+	Profiles struct {
+		Info                 string `json:"Info"`
+		List                 string `json:"List"`
+		NotExist_Error       string `json:"NotExist_Error"`
+		IsExist_Error        string `json:"IsExist_Error"`
+        Create               string `json:"Create"`
+        Create_Syntax_Error  string `json:"Create_Syntax_Error"`
+        Delete               string `json:"Delete"`
+        Delete_Syntax_Error  string `json:"Delete_Syntax_Error"`
+		Delete_Default_Error string `json:"Delete_Default_Error"`
+        Import               string `json:"Import"`
+        Import_Syntax_Error  string `json:"Import_Syntax_Error"`
+		Import_Same_Error    string `json:"Import_Same_Error"`
+		Check_Locked         string `json:"Check_Locked"`
+		Check_NotLocked      string `json:"Check_NotLocked"`
+        Lock                 string `json:"Lock"`
+        Lock_Syntax_Error    string `json:"Lock_Syntax_Error"`
+		Lock_Default_Error   string `json:"Lock_Default_Error"`
+		Unlock               string `json:"Unlock"`
+	} `json:"Profiles"`
 }
 
 // Error constants.
